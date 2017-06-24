@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="C:\lazarus\fpc\2.6.4\bin\i386-win32\fpc.exe" Date="1189853005"/>
+  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -l -vewnhibq &quot;-FiC:\Users\Samsung\Desktop\2015.2\computação aplicada cart so que nao\P1\lib\i386-win32&quot; &quot;-FuC:\Users\Samsung\Desktop\2015.2\computação aplicada cart so que nao\P1\&quot; &quot;-FUC:\Users\Samsung\Desktop\2015.2\computação aplicada cart so que nao\P1\lib\i386-win32\&quot; Questao02.pas"/>
+</CONFIG>

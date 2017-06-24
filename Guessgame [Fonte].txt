@@ -1,0 +1,121 @@
+program guessgame;
+function Status(n: integer; chute: integer) : string;
+begin
+  if chute < (n-9) then
+     status := 'MF'
+  else if chute < (n-6) then
+     status := 'FR'
+  else if chute < (n-3) then
+     status := 'QT'
+  else if chute <= (n+3) then
+     status := 'MQ'
+  else if chute <= (n+6) then
+     status := 'QT'
+  else if chute <= (n+9) then
+     status := 'FR'
+  else
+     status := 'MF';
+end;
+
+procedure emiteMensagem(var e1, e2: string);
+begin
+  case e1 of
+    'MQ': case e2 of
+            'MQ': write('     Continua muito quente.');
+            'QT': write('     Oops, deu uma esfriada, mas continua quente.');
+            'FR': write('     Oops, agora estah frio.');
+            'MF': write('     OOps, agora estah muito frio.');
+            else  write('     Estah muito quente.');
+          end;
+    'QT': case e2 of
+            'MQ': write('     Oops, agora estah muito quente.');
+            'QT': write('     Continua quente.');
+            'FR': write('     Oops, agora estah frio.');
+            'MF': write('     Oops, agora estah muito frio.');
+            else  write('     Estah quente.');
+          end;
+    'FR': case e2 of
+            'MQ': write('     Oops, agora estah muito quente.');
+            'QT': write('     Oops, agora estah quente.');
+            'FR': write('     Continua frio.');
+            'MF': write('     Oops, agora estah muito frio.');
+            else  write('     Estah frio.');
+          end;
+    'MF': case e2 of
+            'MQ': write('     Oops, agora estah muito quente.');
+            'QT': write('     Oops, agora estah quente.');
+            'FR': write('     Oops, deu uma esquentada, mas continua frio.');
+            'MF': write('     Continua muito frio.');
+            else  write('     Estah muito frio.');
+          end;
+  end;
+end;
+
+var
+  acertos, chute, n, j, erro: integer;
+  e1, e2, resp: string;
+begin
+  // gerar número aleatório entre 1 e 100
+  randomize;
+  n := random(100);
+  // zerar contador de acertos
+  acertos := 0;
+  // apresentar jogo ao usuãrio
+  writeln('Voce tem 10 chances de acertar o numero que eu estou pensando.');
+  writeln('Trata-se de um valor entre 1 e 100. Entao vamos la.');
+  writeln;
+  // executar laço de 10 tentativas:
+  for j := 1 to 10 do
+  begin
+    // < ler (chute)
+    write ('Tentativa ', j, ': ');
+    repeat
+      readln(resp);
+      val(resp, chute, erro);
+      if (erro <> 0) or (chute < 1) or (chute > 100) then
+      begin
+        erro := -1;
+        writeln('Valor invalido! Tente de novo.');
+        writeln;
+        write ('Tentativa ', j, ': ');
+      end;
+    until (erro = 0);
+    // se acertou:
+    if chute = n then
+    begin
+      // parabenizar o usuário
+      writeln;
+      writeln('Parabens !');
+      // incrementar contador de acertos
+      inc(acertos);
+      // quebrar laço
+      break;
+    end
+    // senão:
+    else
+    begin
+      // determinar status
+      if j = 1 then // determinar estado1
+      begin
+        e1 := status(n, chute);
+        e2 := '';
+      end
+      else // determinar estado2
+        e2 := status(n, chute);
+      // gerar mensagem correspondente
+      emiteMensagem(e1, e2);
+      // alterar status
+      if e2 <> '' then
+         e1 := e2;
+      writeln;
+    end;
+  end;
+  // comunicar resultado ao usuário
+  writeln;
+  if acertos = 0 then
+     writeln('Infelizmente, apos 10 tentativas, voce nao conseguiu acertar o numero ', n, '.')
+  else
+     writeln('Voce acertou o numero ', n, ' apos ', j, ' tentativas.');
+  readln;
+end.
+         
