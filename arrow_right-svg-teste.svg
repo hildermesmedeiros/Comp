@@ -1,0 +1,10 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 22" width="12" height="22">
+	<title>arrow_right-svg</title>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #121313 } 
+	</style>
+	<g >
+		<path class="shp0" d="M0.72 21.71L10.69 11.71C11.09 11.32 11.09 10.68 10.69 10.28L10.69 10.28L10.69 10.28L0.72 0.29C0.09 -0.37 -1.02 0.13 -1 1.03L-1 20.97C-1.02 21.86 0.08 22.35 0.72 21.71L0.72 21.71Z" />
+	</g>
+</svg>
